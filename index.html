@@ -1,318 +1,540 @@
-export default function OhiWebsite() {
-  const minDate = '2026-03-19'
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ohi – Mix, Beats & Songwriting</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(168,85,247,0.14), transparent 24%),
+        radial-gradient(circle at top left, rgba(251,146,60,0.14), transparent 22%),
+        radial-gradient(circle at bottom, rgba(56,189,248,0.12), transparent 28%),
+        linear-gradient(180deg, #020617 0%, #0b1120 45%, #020617 100%);
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; }
+    .container {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .section { padding: 84px 0; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(216, 180, 254, 0.22);
+      background: rgba(255,255,255,0.05);
+      color: #f5d0fe;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+    }
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d946ef;
+      display: inline-block;
+    }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 {
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: white;
+      max-width: 900px;
+      margin: 24px 0;
+    }
+    h2 {
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: white;
+      margin-bottom: 14px;
+    }
+    .eyebrow {
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #f0abfc;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .lead {
+      max-width: 760px;
+      color: #cbd5e1;
+      font-size: 18px;
+      margin-bottom: 34px;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 92px 0 84px;
+    }
+    .hero-glow-1,
+    .hero-glow-2,
+    .hero-glow-3 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .hero-glow-1 { width: 260px; height: 260px; left: -40px; top: 90px; background: rgba(217,70,239,0.14); }
+    .hero-glow-2 { width: 320px; height: 320px; right: 0; top: 30px; background: rgba(251,146,60,0.12); }
+    .hero-glow-3 { width: 300px; height: 300px; left: 32%; bottom: -80px; background: rgba(34,211,238,0.08); }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 42px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 15px 24px;
+      border-radius: 18px;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary {
+      background: linear-gradient(90deg, #d946ef 0%, #ec4899 45%, #fb923c 100%);
+      color: white;
+      box-shadow: 0 16px 40px rgba(217,70,239,0.30);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: #f8fafc;
+      border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(10px);
+    }
+    .mini-grid, .card-grid, .price-grid {
+      display: grid;
+      gap: 18px;
+    }
+    .mini-grid { grid-template-columns: repeat(3, 1fr); }
+    .card-grid { grid-template-columns: repeat(3, 1fr); }
+    .price-grid { grid-template-columns: repeat(3, 1fr); }
+    .card, .glass {
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      border-radius: 30px;
+      box-shadow: 0 20px 50px rgba(2,6,23,0.35);
+      backdrop-filter: blur(16px);
+    }
+    .card { padding: 28px; }
+    .mini-card { padding: 22px; }
+    .mini-card .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      color: #94a3b8;
+    }
+    .mini-card h3 { color: white; font-size: 20px; margin: 10px 0 8px; }
+    .muted { color: #94a3b8; }
+    .hero-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 26px;
+      background: rgba(15,23,42,0.82);
+    }
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(90deg, #d946ef 0%, #ec4899 45%, #fb923c 100%);
+    }
+    .hero-panel-row {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      padding: 16px;
+      margin-top: 14px;
+    }
+    .hero-panel-row h4 {
+      margin: 0 0 4px;
+      color: white;
+      font-size: 20px;
+    }
+    .hero-panel small, .hero-panel-row p { color: #94a3b8; }
+    .open-now {
+      padding: 9px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(52,211,153,0.18);
+      background: rgba(52,211,153,0.10);
+      color: #86efac;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .section-band {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+    .service-card, .step-card, .price-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before, .price-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+    .service-mix::before, .price-mix::before { background: #d946ef; }
+    .service-beats::before, .price-beats::before { background: #fb923c; }
+    .service-writing::before, .price-writing::before { background: #22d3ee; }
+    .tag {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #cbd5e1;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+    }
+    .step-number {
+      width: 50px;
+      height: 50px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, rgba(217,70,239,0.22), rgba(251,146,60,0.22));
+      border: 1px solid rgba(255,255,255,0.10);
+      margin-bottom: 18px;
+    }
+    .price-card .price {
+      display: inline-flex;
+      margin-top: 18px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+    }
+    .contact-panel, .form-panel {
+      padding: 30px;
+      background: rgba(15,23,42,0.82);
+    }
+    .form-panel {
+      position: relative;
+      overflow: hidden;
+    }
+    .form-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(90deg, #d946ef 0%, #fb923c 50%, #22d3ee 100%);
+    }
+    .info-box {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+      border-radius: 22px;
+      padding: 16px;
+      margin-top: 14px;
+    }
+    .info-box strong { display: block; color: white; margin-top: 6px; }
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 30px;
+    }
+    .full { grid-column: 1 / -1; }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #e2e8f0;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    input, select, textarea {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      padding: 14px 16px;
+      color: #f8fafc;
+      outline: none;
+    }
+    input::placeholder, textarea::placeholder { color: #64748b; }
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(217,70,239,0.40);
+      background: rgba(255,255,255,0.07);
+    }
+    textarea { min-height: 140px; resize: vertical; }
+    .help { margin-top: 8px; font-size: 13px; color: #64748b; }
+    .submit {
+      width: 100%;
+      border: 0;
+      cursor: pointer;
+      padding: 15px 20px;
+      border-radius: 18px;
+      background: linear-gradient(90deg, #d946ef 0%, #ec4899 45%, #fb923c 100%);
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      box-shadow: 0 16px 40px rgba(217,70,239,0.30);
+    }
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 30px 16px 40px;
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+    @media (max-width: 980px) {
+      .hero-grid,
+      .contact-grid,
+      .mini-grid,
+      .card-grid,
+      .price-grid,
+      form {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding-top: 72px; }
+      .lead { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-glow-3"></div>
+    <div class="container hero-grid">
+      <div>
+        <div class="pill"><span class="pill-dot"></span> Ohi</div>
+        <h1>Mix, Beats &amp; Songwriting mit einem Sound, der hängen bleibt</h1>
+        <p class="lead">Dunkel, modern und hochwertig: Ohi liefert dir kreativen Sound mit Charakter. Mixes mit Druck, Beats mit Atmosphäre und Songwriting mit Gefühl – direkt auf deinen Vibe angepasst.</p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#kontakt">Jetzt anfragen</a>
+          <a class="btn btn-secondary" href="#preise">Preise ansehen</a>
+        </div>
 
-  const services = [
-    {
-      title: 'Mix',
-      text: 'Dein Track bekommt Klarheit, Druck und einen professionellen Sound, der zu deinem Stil passt.',
-      accent: 'von-violet-500/30 to-fuchsia-500/20',
-    },
-    {
-      title: 'Beats',
-      text: 'Individuelle Beats mit Charakter – von smooth und emotional bis modern und energiegeladen.',
-      accent: 'from-amber-500/30 to-orange-500/20',
-    },
-    {
-      title: 'Songwriting',
-      text: 'Hooks, Texte und Songideen mit Wiedererkennungswert – kreativ, ehrlich und passend zu deiner Vision.',
-      accent: 'from-cyan-500/30 to-sky-500/20',
-    },
-  ]
-
-  const steps = [
-    'Du schickst deine Idee, Referenzen oder deinen gewünschten Vibe.',
-    'Ohi arbeitet deinen Mix, Beat oder Songwriting-Part passend für dich aus.',
-    'Du bekommst ein Ergebnis, das modern klingt und bereit für den nächsten Schritt ist.',
-  ]
-
-  const prices = [
-    { title: 'Mix', price: '100 €', text: 'Sauberer, druckvoller Sound mit Fokus auf Klarheit und Energie.' },
-    { title: 'Beats', price: '100 €', text: 'Individueller Beat mit eigenem Charakter und starkem Vibe.' },
-    { title: 'Songwriting', price: '100 €', text: 'Hooks, Texte und Ideen mit Wiedererkennungswert und Gefühl.' },
-  ]
-
-  return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-fuchsia-400/30">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.14),transparent_24%),radial-gradient(circle_at_top_left,rgba(251,146,60,0.14),transparent_22%),radial-gradient(circle_at_bottom,rgba(56,189,248,0.12),transparent_28%),linear-gradient(180deg,#020617_0%,#0b1120_45%,#020617_100%)]" />
-
-      <section className="relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.02),transparent)]" />
-        <div className="absolute -left-16 top-24 h-56 w-56 rounded-full bg-fuchsia-500/10 blur-3xl" />
-        <div className="absolute right-0 top-10 h-72 w-72 rounded-full bg-orange-400/10 blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
-        <div className="mx-auto w-[min(1160px,calc(100%-32px))] px-4 py-20 md:py-28">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-            <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-fuchsia-300/20 bg-white/5 px-4 py-2 text-sm font-semibold text-fuchsia-200 backdrop-blur-sm">
-                <span className="h-2 w-2 rounded-full bg-fuchsia-400" />
-                Ohi
-              </div>
-
-              <h1 className="max-w-4xl text-4xl font-black leading-[0.95] tracking-tight text-white md:text-6xl xl:text-7xl">
-                Mix, Beats &amp; Songwriting mit einem Sound, der hängen bleibt
-              </h1>
-
-              <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 md:text-lg">
-                Dunkel, modern und hochwertig: Ohi liefert dir kreativen Sound mit Charakter. Mixes mit Druck, Beats mit Atmosphäre und Songwriting mit Gefühl – direkt auf deinen Vibe angepasst.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href="#kontakt"
-                  className="rounded-2xl bg-gradient-to-r from-fuchsia-500 via-pink-500 to-orange-400 px-6 py-3 font-bold text-white shadow-[0_16px_40px_rgba(217,70,239,0.32)] transition hover:-translate-y-1"
-                >
-                  Jetzt anfragen
-                </a>
-                <a
-                  href="#preise"
-                  className="rounded-2xl border border-white/10 bg-white/5 px-6 py-3 font-bold text-slate-100 backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/10"
-                >
-                  Preise ansehen
-                </a>
-              </div>
-
-              <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl shadow-[0_18px_40px_rgba(2,6,23,0.35)]">
-                  <p className="text-sm uppercase tracking-[0.2em] text-slate-400">Mix</p>
-                  <p className="mt-2 text-lg font-semibold text-white">Clean & Druckvoll</p>
-                  <p className="mt-2 text-sm text-slate-400">Mehr Klarheit, mehr Energie, mehr Präsenz.</p>
-                </div>
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl shadow-[0_18px_40px_rgba(2,6,23,0.35)]">
-                  <p className="text-sm uppercase tracking-[0.2em] text-slate-400">Beats</p>
-                  <p className="mt-2 text-lg font-semibold text-white">Individuell</p>
-                  <p className="mt-2 text-sm text-slate-400">Kein Standard, sondern ein Beat mit eigener Handschrift.</p>
-                </div>
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl shadow-[0_18px_40px_rgba(2,6,23,0.35)]">
-                  <p className="text-sm uppercase tracking-[0.2em] text-slate-400">Songwriting</p>
-                  <p className="mt-2 text-lg font-semibold text-white">Emotional</p>
-                  <p className="mt-2 text-sm text-slate-400">Hooks, Lines und Ideen mit Wiedererkennungswert.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute -inset-4 rounded-[38px] bg-gradient-to-br from-fuchsia-500/20 via-transparent to-cyan-400/20 blur-2xl" />
-              <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-slate-900/85 p-6 shadow-2xl backdrop-blur-xl">
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-orange-400" />
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.22em] text-slate-400">Creative Studio</p>
-                    <h2 className="mt-2 text-2xl font-bold text-white">Ohi</h2>
-                  </div>
-                  <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-3 py-2 text-xs font-semibold text-emerald-300">
-                    Open now
-                  </div>
-                </div>
-
-                <div className="mt-5 grid gap-4">
-                  <div className="rounded-2xl border border-fuchsia-400/20 bg-gradient-to-r from-fuchsia-500/10 to-transparent p-4">
-                    <p className="text-sm text-slate-400">Mix</p>
-                    <p className="mt-1 text-lg font-semibold text-white">100 €</p>
-                  </div>
-                  <div className="rounded-2xl border border-orange-400/20 bg-gradient-to-r from-orange-400/10 to-transparent p-4">
-                    <p className="text-sm text-slate-400">Beats</p>
-                    <p className="mt-1 text-lg font-semibold text-white">100 €</p>
-                  </div>
-                  <div className="rounded-2xl border border-cyan-400/20 bg-gradient-to-r from-cyan-400/10 to-transparent p-4">
-                    <p className="text-sm text-slate-400">Songwriting</p>
-                    <p className="mt-1 text-lg font-semibold text-white">100 €</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <p className="text-sm text-slate-400">Instagram</p>
-                    <p className="mt-1 text-lg font-semibold text-white">@prodbyohi</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="mini-grid">
+          <div class="card mini-card">
+            <div class="label">Mix</div>
+            <h3>Clean &amp; Druckvoll</h3>
+            <p class="muted">Mehr Klarheit, mehr Energie, mehr Präsenz.</p>
+          </div>
+          <div class="card mini-card">
+            <div class="label">Beats</div>
+            <h3>Individuell</h3>
+            <p class="muted">Kein Standard, sondern ein Beat mit eigener Handschrift.</p>
+          </div>
+          <div class="card mini-card">
+            <div class="label">Songwriting</div>
+            <h3>Emotional</h3>
+            <p class="muted">Hooks, Lines und Ideen mit Wiedererkennungswert.</p>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section id="services" className="mx-auto w-[min(1160px,calc(100%-32px))] px-4 py-20">
-        <div className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-fuchsia-300">Services</div>
-        <h2 className="mb-3 text-3xl font-black tracking-tight text-white md:text-5xl">Was Ohi anbietet</h2>
-        <p className="mb-10 max-w-2xl text-slate-400">
-          Jeder Bereich ist individuell auf dein Projekt abgestimmt – von cleanem Mix bis zu Beats und Songideen mit eigener Handschrift.
-        </p>
-        <div className="grid gap-5 md:grid-cols-3">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/5 p-6 shadow-[0_18px_40px_rgba(2,6,23,0.35)] backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20"
-            >
-              <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${service.accent}`} />
-              <div className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-white/5 blur-2xl transition group-hover:bg-white/10" />
-              <h3 className="mb-3 text-2xl font-bold text-white">{service.title}</h3>
-              <p className="text-slate-400">{service.text}</p>
-              <div className="mt-6 inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
-                Individuell
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-white/[0.03]">
-        <div className="mx-auto w-[min(1160px,calc(100%-32px))] px-4 py-20">
-          <div className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-orange-300">Ablauf</div>
-          <h2 className="mb-3 text-3xl font-black tracking-tight text-white md:text-5xl">So läuft die Zusammenarbeit</h2>
-          <p className="mb-10 max-w-2xl text-slate-400">
-            Klarer Ablauf, kurze Wege und ein Ergebnis, das zu deinem Timing und deinem Sound passt.
-          </p>
-          <div className="grid gap-5 md:grid-cols-3">
-            {steps.map((step, index) => (
-              <div
-                key={index}
-                className="relative rounded-[30px] border border-white/10 bg-slate-900/70 p-6 shadow-[0_18px_40px_rgba(2,6,23,0.35)] backdrop-blur-xl"
-              >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-fuchsia-500/20 to-orange-400/20 text-lg font-bold text-white ring-1 ring-white/10">
-                  {index + 1}
-                </div>
-                <p className="text-slate-300">{step}</p>
-              </div>
-            ))}
+      <div class="glass hero-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:18px;">
+          <div>
+            <small style="text-transform:uppercase; letter-spacing:0.22em;">Creative Studio</small>
+            <h2 style="font-size:34px; margin:8px 0 0;">Ohi</h2>
           </div>
+          <div class="open-now">Open now</div>
         </div>
-      </section>
 
-      <section id="preise" className="mx-auto w-[min(1160px,calc(100%-32px))] px-4 py-20">
-        <div className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-cyan-300">Preise</div>
-        <h2 className="mb-3 text-3xl font-black tracking-tight text-white md:text-5xl">100 € pro Service</h2>
-        <p className="mb-10 max-w-2xl text-slate-400">
-          Klar, direkt und ohne Verwirrung: Jeder einzelne Service kostet 100 €.
-        </p>
-        <div className="grid gap-5 md:grid-cols-3">
-          {prices.map((price, i) => (
-            <div
-              key={price.title}
-              className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-b from-white/8 to-white/[0.03] p-8 shadow-[0_22px_50px_rgba(2,6,23,0.38)] backdrop-blur-xl transition hover:-translate-y-1"
-            >
-              <div className={`absolute inset-x-0 top-0 h-1 ${i === 0 ? 'bg-fuchsia-400' : i === 1 ? 'bg-orange-400' : 'bg-cyan-400'}`} />
-              <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/5 blur-2xl transition group-hover:bg-white/10" />
-              <p className="text-sm uppercase tracking-[0.2em] text-slate-400">Service</p>
-              <div className="mt-3 text-3xl font-black text-white">{price.title}</div>
-              <div className="mt-5 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-lg font-bold text-white">
-                {price.price}
-              </div>
-              <p className="mt-5 text-slate-400">{price.text}</p>
-            </div>
-          ))}
+        <div class="hero-panel-row">
+          <small>Mix</small>
+          <h4>100 €</h4>
         </div>
-      </section>
-
-      <section id="kontakt" className="mx-auto w-[min(1160px,calc(100%-32px))] px-4 pb-20">
-        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-slate-900/90 to-slate-950 p-7 shadow-[0_18px_40px_rgba(2,6,23,0.4)] backdrop-blur-xl md:p-10">
-            <div className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-fuchsia-300">Kontakt</div>
-            <h2 className="text-3xl font-black tracking-tight text-white md:text-5xl">Starte jetzt mit Ohi</h2>
-            <p className="mt-5 max-w-3xl text-base leading-7 text-slate-400 md:text-lg">
-              Schreib mir für Mix, Beats oder Songwriting. Jeder einzelne Service kostet 100 €.
-            </p>
-
-            <div className="mt-8 space-y-4">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-sm uppercase tracking-[0.18em] text-slate-500">Instagram</p>
-                <p className="mt-2 font-semibold text-white">@prodbyohi</p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-sm uppercase tracking-[0.18em] text-slate-500">Services</p>
-                <p className="mt-2 font-semibold text-white">Mix · Beats · Songwriting</p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-sm uppercase tracking-[0.18em] text-slate-500">Hinweis</p>
-                <p className="mt-2 font-semibold text-white">Frühester Abgabetermin: 4 Tage im Voraus</p>
-              </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="mailto:prodbyohi@email.com"
-                className="rounded-2xl bg-gradient-to-r from-fuchsia-500 to-orange-400 px-6 py-3 font-bold text-white shadow-[0_12px_30px_rgba(217,70,239,0.28)] transition hover:-translate-y-0.5"
-              >
-                E-Mail senden
-              </a>
-              <a
-                href="https://instagram.com/prodbyohi"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-2xl border border-white/10 bg-white/5 px-6 py-3 font-bold text-slate-100 backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/10"
-              >
-                Instagram öffnen
-              </a>
-            </div>
-          </div>
-
-          <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-slate-900/80 p-7 shadow-[0_18px_40px_rgba(2,6,23,0.4)] backdrop-blur-xl md:p-10">
-            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-fuchsia-500 via-orange-400 to-cyan-400" />
-            <div className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-orange-300">Anfrage</div>
-            <h3 className="text-2xl font-black tracking-tight text-white md:text-3xl">Sende deine Anfrage</h3>
-            <p className="mt-3 text-slate-400">
-              Wähle deinen Service und gib an, bis wann dein Song fertig sein soll. Jeder Service kostet 100 € und der früheste Termin ist 4 Tage im Voraus.
-            </p>
-
-            <form className="mt-8 grid gap-4 md:grid-cols-2">
-              <div className="md:col-span-1">
-                <label className="mb-2 block text-sm font-semibold text-slate-200">Dein Name</label>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 outline-none backdrop-blur-sm transition placeholder:text-slate-500 focus:border-fuchsia-400/40 focus:bg-white/[0.07]"
-                />
-              </div>
-
-              <div className="md:col-span-1">
-                <label className="mb-2 block text-sm font-semibold text-slate-200">Deine E-Mail</label>
-                <input
-                  type="email"
-                  placeholder="name@email.com"
-                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 outline-none backdrop-blur-sm transition placeholder:text-slate-500 focus:border-fuchsia-400/40 focus:bg-white/[0.07]"
-                />
-              </div>
-
-              <div className="md:col-span-1">
-                <label className="mb-2 block text-sm font-semibold text-slate-200">Service</label>
-                <select className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 outline-none backdrop-blur-sm transition focus:border-orange-400/40 focus:bg-white/[0.07]">
-                  <option className="bg-slate-900">Mix</option>
-                  <option className="bg-slate-900">Beats</option>
-                  <option className="bg-slate-900">Songwriting</option>
-                </select>
-              </div>
-
-              <div className="md:col-span-1">
-                <label className="mb-2 block text-sm font-semibold text-slate-200">Fertig bis</label>
-                <input
-                  type="date"
-                  min={minDate}
-                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 outline-none backdrop-blur-sm transition focus:border-cyan-400/40 focus:bg-white/[0.07]"
-                />
-                <p className="mt-2 text-sm text-slate-500">Mindestens 4 Tage Vorlauf.</p>
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="mb-2 block text-sm font-semibold text-slate-200">Infos zu deinem Song</label>
-                <textarea
-                  rows={6}
-                  placeholder="Beschreib kurz deinen Song, den Vibe oder was du brauchst..."
-                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 outline-none backdrop-blur-sm transition placeholder:text-slate-500 focus:border-fuchsia-400/40 focus:bg-white/[0.07]"
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <button
-                  type="submit"
-                  className="w-full rounded-2xl bg-gradient-to-r from-fuchsia-500 to-orange-400 px-6 py-3 font-bold text-white shadow-[0_12px_30px_rgba(217,70,239,0.28)] transition hover:-translate-y-0.5"
-                >
-                  Anfrage senden
-                </button>
-              </div>
-            </form>
-          </div>
+        <div class="hero-panel-row">
+          <small>Beats</small>
+          <h4>100 €</h4>
         </div>
-      </section>
-
-      <footer className="border-t border-white/10 px-4 py-8 text-center text-sm text-slate-500">
-        © Ohi
-      </footer>
+        <div class="hero-panel-row">
+          <small>Songwriting</small>
+          <h4>100 €</h4>
+        </div>
+        <div class="hero-panel-row">
+          <small>Instagram</small>
+          <h4>@prodbyohi</h4>
+        </div>
+      </div>
     </div>
-  )
-}
+  </section>
+
+  <section id="services" class="section">
+    <div class="container">
+      <div class="eyebrow">Services</div>
+      <h2>Was Ohi anbietet</h2>
+      <p class="lead" style="max-width:680px;">Jeder Bereich ist auf dein Projekt abgestimmt – von sauberem Mix bis zu Beats und Songideen mit eigener Handschrift.</p>
+      <div class="card-grid">
+        <div class="card service-card service-mix">
+          <h3 style="color:white; font-size:30px; margin-bottom:12px;">Mix</h3>
+          <p class="muted">Dein Track bekommt Klarheit, Druck und einen professionellen Sound, der zu deinem Stil passt.</p>
+          <span class="tag">100 €</span>
+        </div>
+        <div class="card service-card service-beats">
+          <h3 style="color:white; font-size:30px; margin-bottom:12px;">Beats</h3>
+          <p class="muted">Individuelle Beats mit Charakter – von smooth und emotional bis modern und energiegeladen.</p>
+          <span class="tag">100 €</span>
+        </div>
+        <div class="card service-card service-writing">
+          <h3 style="color:white; font-size:30px; margin-bottom:12px;">Songwriting</h3>
+          <p class="muted">Hooks, Texte und Songideen mit Wiedererkennungswert – kreativ, ehrlich und passend zu deiner Vision.</p>
+          <span class="tag">100 €</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-band">
+    <div class="container">
+      <div class="eyebrow" style="color:#fdba74;">Ablauf</div>
+      <h2>So läuft die Zusammenarbeit</h2>
+      <p class="lead" style="max-width:700px;">Klarer Ablauf, kurze Wege und ein Ergebnis, das zu deinem Timing und deinem Sound passt.</p>
+      <div class="card-grid">
+        <div class="card step-card">
+          <div class="step-number">1</div>
+          <p class="muted">Du schickst deine Idee, Referenzen oder deinen gewünschten Vibe.</p>
+        </div>
+        <div class="card step-card">
+          <div class="step-number">2</div>
+          <p class="muted">Ohi arbeitet deinen Mix, Beat oder Songwriting-Part passend für dich aus.</p>
+        </div>
+        <div class="card step-card">
+          <div class="step-number">3</div>
+          <p class="muted">Du bekommst ein Ergebnis, das modern klingt und bereit für den nächsten Schritt ist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preise" class="section">
+    <div class="container">
+      <div class="eyebrow" style="color:#67e8f9;">Preise</div>
+      <h2>100 € pro Service</h2>
+      <p class="lead" style="max-width:700px;">Klar, direkt und ohne Verwirrung: Jeder einzelne Service kostet 100 €.</p>
+      <div class="price-grid">
+        <div class="card price-card price-mix">
+          <div style="font-size:13px; text-transform:uppercase; letter-spacing:0.20em; color:#94a3b8;">Service</div>
+          <h3 style="color:white; font-size:34px; margin:12px 0 0;">Mix</h3>
+          <div class="price">100 €</div>
+          <p class="muted" style="margin-top:18px;">Sauberer, druckvoller Sound mit Fokus auf Klarheit und Energie.</p>
+        </div>
+        <div class="card price-card price-beats">
+          <div style="font-size:13px; text-transform:uppercase; letter-spacing:0.20em; color:#94a3b8;">Service</div>
+          <h3 style="color:white; font-size:34px; margin:12px 0 0;">Beats</h3>
+          <div class="price">100 €</div>
+          <p class="muted" style="margin-top:18px;">Individueller Beat mit eigenem Charakter und starkem Vibe.</p>
+        </div>
+        <div class="card price-card price-writing">
+          <div style="font-size:13px; text-transform:uppercase; letter-spacing:0.20em; color:#94a3b8;">Service</div>
+          <h3 style="color:white; font-size:34px; margin:12px 0 0;">Songwriting</h3>
+          <div class="price">100 €</div>
+          <p class="muted" style="margin-top:18px;">Hooks, Texte und Ideen mit Wiedererkennungswert und Gefühl.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="section" style="padding-top:0;">
+    <div class="container contact-grid">
+      <div class="glass contact-panel">
+        <div class="eyebrow">Kontakt</div>
+        <h2>Starte jetzt mit Ohi</h2>
+        <p class="lead" style="font-size:17px; max-width:100%;">Schreib mir für Mix, Beats oder Songwriting. Jeder einzelne Service kostet 100 €.</p>
+
+        <div class="info-box">
+          <small style="text-transform:uppercase; letter-spacing:0.18em; color:#64748b;">Instagram</small>
+          <strong>@prodbyohi</strong>
+        </div>
+        <div class="info-box">
+          <small style="text-transform:uppercase; letter-spacing:0.18em; color:#64748b;">Services</small>
+          <strong>Mix · Beats · Songwriting</strong>
+        </div>
+        <div class="info-box">
+          <small style="text-transform:uppercase; letter-spacing:0.18em; color:#64748b;">Hinweis</small>
+          <strong>Frühester Abgabetermin: 4 Tage im Voraus</strong>
+        </div>
+
+        <div class="buttons" style="margin-top:28px; margin-bottom:0;">
+          <a class="btn btn-primary" href="mailto:prodbyohi@email.com">E-Mail senden</a>
+          <a class="btn btn-secondary" href="https://instagram.com/prodbyohi" target="_blank" rel="noreferrer">Instagram öffnen</a>
+        </div>
+      </div>
+
+      <div class="glass form-panel">
+        <div class="eyebrow" style="color:#fdba74;">Anfrage</div>
+        <h2 style="font-size:40px;">Sende deine Anfrage</h2>
+        <p class="muted" style="max-width:100%; font-size:16px;">Wähle deinen Service und gib an, bis wann dein Song fertig sein soll. Jeder Service kostet 100 € und der früheste Termin ist 4 Tage im Voraus.</p>
+
+        <form>
+          <div>
+            <label for="name">Dein Name</label>
+            <input id="name" type="text" placeholder="Name" />
+          </div>
+          <div>
+            <label for="email">Deine E-Mail</label>
+            <input id="email" type="email" placeholder="name@email.com" />
+          </div>
+          <div>
+            <label for="service">Service</label>
+            <select id="service">
+              <option>Mix</option>
+              <option>Beats</option>
+              <option>Songwriting</option>
+            </select>
+          </div>
+          <div>
+            <label for="date">Fertig bis</label>
+            <input id="date" type="date" min="2026-03-19" />
+            <div class="help">Mindestens 4 Tage Vorlauf.</div>
+          </div>
+          <div class="full">
+            <label for="message">Infos zu deinem Song</label>
+            <textarea id="message" placeholder="Beschreib kurz deinen Song, den Vibe oder was du brauchst..."></textarea>
+          </div>
+          <div class="full">
+            <button class="submit" type="submit">Anfrage senden</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>© Ohi</footer>
+</body>
+</html>
