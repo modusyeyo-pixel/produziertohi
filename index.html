@@ -1,0 +1,318 @@
+export default function OhiWebsite() {
+  const minDate = '2026-03-19'
+
+  const services = [
+    {
+      title: 'Mix',
+      text: 'Dein Track bekommt Klarheit, Druck und einen professionellen Sound, der zu deinem Stil passt.',
+      accent: 'von-violet-500/30 to-fuchsia-500/20',
+    },
+    {
+      title: 'Beats',
+      text: 'Individuelle Beats mit Charakter – von smooth und emotional bis modern und energiegeladen.',
+      accent: 'from-amber-500/30 to-orange-500/20',
+    },
+    {
+      title: 'Songwriting',
+      text: 'Hooks, Texte und Songideen mit Wiedererkennungswert – kreativ, ehrlich und passend zu deiner Vision.',
+      accent: 'from-cyan-500/30 to-sky-500/20',
+    },
+  ]
+
+  const steps = [
+    'Du schickst deine Idee, Referenzen oder deinen gewünschten Vibe.',
+    'Ohi arbeitet deinen Mix, Beat oder Songwriting-Part passend für dich aus.',
+    'Du bekommst ein Ergebnis, das modern klingt und bereit für den nächsten Schritt ist.',
+  ]
+
+  const prices = [
+    { title: 'Mix', price: '100 €', text: 'Sauberer, druckvoller Sound mit Fokus auf Klarheit und Energie.' },
+    { title: 'Beats', price: '100 €', text: 'Individueller Beat mit eigenem Charakter und starkem Vibe.' },
+    { title: 'Songwriting', price: '100 €', text: 'Hooks, Texte und Ideen mit Wiedererkennungswert und Gefühl.' },
+  ]
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-fuchsia-400/30">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.14),transparent_24%),radial-gradient(circle_at_top_left,rgba(251,146,60,0.14),transparent_22%),radial-gradient(circle_at_bottom,rgba(56,189,248,0.12),transparent_28%),linear-gradient(180deg,#020617_0%,#0b1120_45%,#020617_100%)]" />
+
+      <section className="relative overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.02),transparent)]" />
+        <div className="absolute -left-16 top-24 h-56 w-56 rounded-full bg-fuchsia-500/10 blur-3xl" />
+        <div className="absolute right-0 top-10 h-72 w-72 rounded-full bg-orange-400/10 blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="mx-auto w-[min(1160px,calc(100%-32px))] px-4 py-20 md:py-28">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-fuchsia-300/20 bg-white/5 px-4 py-2 text-sm font-semibold text-fuchsia-200 backdrop-blur-sm">
+                <span className="h-2 w-2 rounded-full bg-fuchsia-400" />
+                Ohi
+              </div>
+
+              <h1 className="max-w-4xl text-4xl font-black leading-[0.95] tracking-tight text-white md:text-6xl xl:text-7xl">
+                Mix, Beats &amp; Songwriting mit einem Sound, der hängen bleibt
+              </h1>
+
+              <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 md:text-lg">
+                Dunkel, modern und hochwertig: Ohi liefert dir kreativen Sound mit Charakter. Mixes mit Druck, Beats mit Atmosphäre und Songwriting mit Gefühl – direkt auf deinen Vibe angepasst.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href="#kontakt"
+                  className="rounded-2xl bg-gradient-to-r from-fuchsia-500 via-pink-500 to-orange-400 px-6 py-3 font-bold text-white shadow-[0_16px_40px_rgba(217,70,239,0.32)] transition hover:-translate-y-1"
+                >
+                  Jetzt anfragen
+                </a>
+                <a
+                  href="#preise"
+                  className="rounded-2xl border border-white/10 bg-white/5 px-6 py-3 font-bold text-slate-100 backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/10"
+                >
+                  Preise ansehen
+                </a>
+              </div>
+
+              <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl shadow-[0_18px_40px_rgba(2,6,23,0.35)]">
+                  <p className="text-sm uppercase tracking-[0.2em] text-slate-400">Mix</p>
+                  <p className="mt-2 text-lg font-semibold text-white">Clean & Druckvoll</p>
+                  <p className="mt-2 text-sm text-slate-400">Mehr Klarheit, mehr Energie, mehr Präsenz.</p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl shadow-[0_18px_40px_rgba(2,6,23,0.35)]">
+                  <p className="text-sm uppercase tracking-[0.2em] text-slate-400">Beats</p>
+                  <p className="mt-2 text-lg font-semibold text-white">Individuell</p>
+                  <p className="mt-2 text-sm text-slate-400">Kein Standard, sondern ein Beat mit eigener Handschrift.</p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl shadow-[0_18px_40px_rgba(2,6,23,0.35)]">
+                  <p className="text-sm uppercase tracking-[0.2em] text-slate-400">Songwriting</p>
+                  <p className="mt-2 text-lg font-semibold text-white">Emotional</p>
+                  <p className="mt-2 text-sm text-slate-400">Hooks, Lines und Ideen mit Wiedererkennungswert.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-[38px] bg-gradient-to-br from-fuchsia-500/20 via-transparent to-cyan-400/20 blur-2xl" />
+              <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-slate-900/85 p-6 shadow-2xl backdrop-blur-xl">
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-orange-400" />
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.22em] text-slate-400">Creative Studio</p>
+                    <h2 className="mt-2 text-2xl font-bold text-white">Ohi</h2>
+                  </div>
+                  <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-3 py-2 text-xs font-semibold text-emerald-300">
+                    Open now
+                  </div>
+                </div>
+
+                <div className="mt-5 grid gap-4">
+                  <div className="rounded-2xl border border-fuchsia-400/20 bg-gradient-to-r from-fuchsia-500/10 to-transparent p-4">
+                    <p className="text-sm text-slate-400">Mix</p>
+                    <p className="mt-1 text-lg font-semibold text-white">100 €</p>
+                  </div>
+                  <div className="rounded-2xl border border-orange-400/20 bg-gradient-to-r from-orange-400/10 to-transparent p-4">
+                    <p className="text-sm text-slate-400">Beats</p>
+                    <p className="mt-1 text-lg font-semibold text-white">100 €</p>
+                  </div>
+                  <div className="rounded-2xl border border-cyan-400/20 bg-gradient-to-r from-cyan-400/10 to-transparent p-4">
+                    <p className="text-sm text-slate-400">Songwriting</p>
+                    <p className="mt-1 text-lg font-semibold text-white">100 €</p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                    <p className="text-sm text-slate-400">Instagram</p>
+                    <p className="mt-1 text-lg font-semibold text-white">@prodbyohi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="mx-auto w-[min(1160px,calc(100%-32px))] px-4 py-20">
+        <div className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-fuchsia-300">Services</div>
+        <h2 className="mb-3 text-3xl font-black tracking-tight text-white md:text-5xl">Was Ohi anbietet</h2>
+        <p className="mb-10 max-w-2xl text-slate-400">
+          Jeder Bereich ist individuell auf dein Projekt abgestimmt – von cleanem Mix bis zu Beats und Songideen mit eigener Handschrift.
+        </p>
+        <div className="grid gap-5 md:grid-cols-3">
+          {services.map((service) => (
+            <div
+              key={service.title}
+              className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/5 p-6 shadow-[0_18px_40px_rgba(2,6,23,0.35)] backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20"
+            >
+              <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${service.accent}`} />
+              <div className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-white/5 blur-2xl transition group-hover:bg-white/10" />
+              <h3 className="mb-3 text-2xl font-bold text-white">{service.title}</h3>
+              <p className="text-slate-400">{service.text}</p>
+              <div className="mt-6 inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
+                Individuell
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-white/[0.03]">
+        <div className="mx-auto w-[min(1160px,calc(100%-32px))] px-4 py-20">
+          <div className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-orange-300">Ablauf</div>
+          <h2 className="mb-3 text-3xl font-black tracking-tight text-white md:text-5xl">So läuft die Zusammenarbeit</h2>
+          <p className="mb-10 max-w-2xl text-slate-400">
+            Klarer Ablauf, kurze Wege und ein Ergebnis, das zu deinem Timing und deinem Sound passt.
+          </p>
+          <div className="grid gap-5 md:grid-cols-3">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className="relative rounded-[30px] border border-white/10 bg-slate-900/70 p-6 shadow-[0_18px_40px_rgba(2,6,23,0.35)] backdrop-blur-xl"
+              >
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-fuchsia-500/20 to-orange-400/20 text-lg font-bold text-white ring-1 ring-white/10">
+                  {index + 1}
+                </div>
+                <p className="text-slate-300">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="preise" className="mx-auto w-[min(1160px,calc(100%-32px))] px-4 py-20">
+        <div className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-cyan-300">Preise</div>
+        <h2 className="mb-3 text-3xl font-black tracking-tight text-white md:text-5xl">100 € pro Service</h2>
+        <p className="mb-10 max-w-2xl text-slate-400">
+          Klar, direkt und ohne Verwirrung: Jeder einzelne Service kostet 100 €.
+        </p>
+        <div className="grid gap-5 md:grid-cols-3">
+          {prices.map((price, i) => (
+            <div
+              key={price.title}
+              className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-b from-white/8 to-white/[0.03] p-8 shadow-[0_22px_50px_rgba(2,6,23,0.38)] backdrop-blur-xl transition hover:-translate-y-1"
+            >
+              <div className={`absolute inset-x-0 top-0 h-1 ${i === 0 ? 'bg-fuchsia-400' : i === 1 ? 'bg-orange-400' : 'bg-cyan-400'}`} />
+              <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/5 blur-2xl transition group-hover:bg-white/10" />
+              <p className="text-sm uppercase tracking-[0.2em] text-slate-400">Service</p>
+              <div className="mt-3 text-3xl font-black text-white">{price.title}</div>
+              <div className="mt-5 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-lg font-bold text-white">
+                {price.price}
+              </div>
+              <p className="mt-5 text-slate-400">{price.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="kontakt" className="mx-auto w-[min(1160px,calc(100%-32px))] px-4 pb-20">
+        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-slate-900/90 to-slate-950 p-7 shadow-[0_18px_40px_rgba(2,6,23,0.4)] backdrop-blur-xl md:p-10">
+            <div className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-fuchsia-300">Kontakt</div>
+            <h2 className="text-3xl font-black tracking-tight text-white md:text-5xl">Starte jetzt mit Ohi</h2>
+            <p className="mt-5 max-w-3xl text-base leading-7 text-slate-400 md:text-lg">
+              Schreib mir für Mix, Beats oder Songwriting. Jeder einzelne Service kostet 100 €.
+            </p>
+
+            <div className="mt-8 space-y-4">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-sm uppercase tracking-[0.18em] text-slate-500">Instagram</p>
+                <p className="mt-2 font-semibold text-white">@prodbyohi</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-sm uppercase tracking-[0.18em] text-slate-500">Services</p>
+                <p className="mt-2 font-semibold text-white">Mix · Beats · Songwriting</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-sm uppercase tracking-[0.18em] text-slate-500">Hinweis</p>
+                <p className="mt-2 font-semibold text-white">Frühester Abgabetermin: 4 Tage im Voraus</p>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href="mailto:prodbyohi@email.com"
+                className="rounded-2xl bg-gradient-to-r from-fuchsia-500 to-orange-400 px-6 py-3 font-bold text-white shadow-[0_12px_30px_rgba(217,70,239,0.28)] transition hover:-translate-y-0.5"
+              >
+                E-Mail senden
+              </a>
+              <a
+                href="https://instagram.com/prodbyohi"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-2xl border border-white/10 bg-white/5 px-6 py-3 font-bold text-slate-100 backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/10"
+              >
+                Instagram öffnen
+              </a>
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-slate-900/80 p-7 shadow-[0_18px_40px_rgba(2,6,23,0.4)] backdrop-blur-xl md:p-10">
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-fuchsia-500 via-orange-400 to-cyan-400" />
+            <div className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-orange-300">Anfrage</div>
+            <h3 className="text-2xl font-black tracking-tight text-white md:text-3xl">Sende deine Anfrage</h3>
+            <p className="mt-3 text-slate-400">
+              Wähle deinen Service und gib an, bis wann dein Song fertig sein soll. Jeder Service kostet 100 € und der früheste Termin ist 4 Tage im Voraus.
+            </p>
+
+            <form className="mt-8 grid gap-4 md:grid-cols-2">
+              <div className="md:col-span-1">
+                <label className="mb-2 block text-sm font-semibold text-slate-200">Dein Name</label>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 outline-none backdrop-blur-sm transition placeholder:text-slate-500 focus:border-fuchsia-400/40 focus:bg-white/[0.07]"
+                />
+              </div>
+
+              <div className="md:col-span-1">
+                <label className="mb-2 block text-sm font-semibold text-slate-200">Deine E-Mail</label>
+                <input
+                  type="email"
+                  placeholder="name@email.com"
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 outline-none backdrop-blur-sm transition placeholder:text-slate-500 focus:border-fuchsia-400/40 focus:bg-white/[0.07]"
+                />
+              </div>
+
+              <div className="md:col-span-1">
+                <label className="mb-2 block text-sm font-semibold text-slate-200">Service</label>
+                <select className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 outline-none backdrop-blur-sm transition focus:border-orange-400/40 focus:bg-white/[0.07]">
+                  <option className="bg-slate-900">Mix</option>
+                  <option className="bg-slate-900">Beats</option>
+                  <option className="bg-slate-900">Songwriting</option>
+                </select>
+              </div>
+
+              <div className="md:col-span-1">
+                <label className="mb-2 block text-sm font-semibold text-slate-200">Fertig bis</label>
+                <input
+                  type="date"
+                  min={minDate}
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 outline-none backdrop-blur-sm transition focus:border-cyan-400/40 focus:bg-white/[0.07]"
+                />
+                <p className="mt-2 text-sm text-slate-500">Mindestens 4 Tage Vorlauf.</p>
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="mb-2 block text-sm font-semibold text-slate-200">Infos zu deinem Song</label>
+                <textarea
+                  rows={6}
+                  placeholder="Beschreib kurz deinen Song, den Vibe oder was du brauchst..."
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-100 outline-none backdrop-blur-sm transition placeholder:text-slate-500 focus:border-fuchsia-400/40 focus:bg-white/[0.07]"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <button
+                  type="submit"
+                  className="w-full rounded-2xl bg-gradient-to-r from-fuchsia-500 to-orange-400 px-6 py-3 font-bold text-white shadow-[0_12px_30px_rgba(217,70,239,0.28)] transition hover:-translate-y-0.5"
+                >
+                  Anfrage senden
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-white/10 px-4 py-8 text-center text-sm text-slate-500">
+        © Ohi
+      </footer>
+    </div>
+  )
+}
